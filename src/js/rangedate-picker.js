@@ -218,6 +218,10 @@ export default {
       this.isOpen = true
     }
     if (this.activeMonthStart === 11) this.activeYearEnd = this.activeYearStart + 1
+    this.dateRange = {
+      start: new Date(this.initRange.start),
+      end: new Date(this.initRange.end)
+    }
   },
   watch: {
     startNextActiveMonth: function (value) {
