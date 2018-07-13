@@ -3,7 +3,7 @@
     <div class="input-date" @click="toggleCalendar()"> {{getDateString(dateRange.start)}} - {{getDateString(dateRange.end)}}</div>
     <div class="calendar" :class="{'calendar-mobile ': isCompact, 'calendar-right-to-left': isRighttoLeft}" v-if="isOpen">
       <div class="calendar-head" v-if="!isCompact">
-        <h2>{{captions.title}}</h2>
+        <h2>{{captionsLocale.title}}</h2>
         <i class="close" @click="toggleCalendar()">&times</i>
       </div>
       <div class="calendar-wrap">
@@ -49,10 +49,10 @@
             :class="{'active-preset': presetActive === item.label}">
             {{item.label}}
           </li>
-          <li><button class="calendar-btn-apply" @click="setDateValue()">{{captions.ok_button}}</button></li>
+          <li><button class="calendar-btn-apply" @click="setDateValue()">{{captionsLocale.ok_button}}</button></li>
         </ul>
       </div>
-      
+
     </div>
   </div>
 </template>

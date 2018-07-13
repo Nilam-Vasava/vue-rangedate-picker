@@ -1,20 +1,36 @@
 import fecha from 'fecha'
 
 const defaultConfig = {}
-const defaultI18n = 'ID'
+const defaultI18n = 'EN'
 const availableMonths = {
-  EN: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November',
-    'December'],
-  ID: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November',
-    'Desember']
+  DE: [
+    'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August',
+    'September', 'Oktober', 'November', 'Dezember'
+  ],
+  EN: [
+    'January', 'February', 'March', 'April', 'May', 'June', 'July',
+    'August', 'September', 'October', 'November', 'December'
+  ],
+  ID: [
+    'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli',
+    'Agustus', 'September', 'Oktober', 'November', 'Desember'
+  ]
 }
 
 const availableShortDays = {
+  DE: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
   EN: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
   ID: ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab']
 }
 
 const presetRangeLabel = {
+  DE: {
+    today: 'Heute',
+    thisMonth: 'Dieser Monat',
+    lastMonth: 'Letzter Monat',
+    lastSevenSays: 'Letzte 7 Tage',
+    lastThirtyDays: 'Letzte 30 Tage'
+  },
   EN: {
     today: 'Today',
     thisMonth: 'This Month',
@@ -32,8 +48,18 @@ const presetRangeLabel = {
 }
 
 const defaultCaptions = {
-  'title': 'Choose Dates',
-  'ok_button': 'Apply'
+  DE: {
+    title: 'Datum auswählen',
+    ok_button: 'Bestätigen'
+  },
+  EN: {
+    title: 'Choose Dates',
+    ok_button: 'Apply'
+  },
+  ID: {
+    title: 'Choose Dates',
+    ok_button: 'Apply'
+  }
 }
 
 const defaultStyle = {
@@ -139,7 +165,7 @@ export default {
     // options for captions are: title, ok_button
     captions: {
       type: Object,
-      default: () => defaultCaptions
+      default: () => null
     },
     format: {
       type: String,
@@ -204,6 +230,9 @@ export default {
     },
     shortDaysLocale: function () {
       return this.shortDays || availableShortDays[this.i18n]
+    },
+    captionsLocale: function () {
+      return this.captions || defaultCaptions[this.i18n]
     },
     s: function () {
       return Object.assign({}, defaultStyle, this.style)
