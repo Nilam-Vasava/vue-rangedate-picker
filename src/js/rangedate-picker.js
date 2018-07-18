@@ -11,6 +11,10 @@ const availableMonths = {
     'January', 'February', 'March', 'April', 'May', 'June', 'July',
     'August', 'September', 'October', 'November', 'December'
   ],
+  FR: [
+    'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet',
+    'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
+  ],
   ID: [
     'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli',
     'Agustus', 'September', 'Oktober', 'November', 'Desember'
@@ -18,32 +22,52 @@ const availableMonths = {
 }
 
 const availableShortDays = {
-  DE: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
+  DE: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
   EN: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  FR: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
   ID: ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab']
 }
 
 const presetRangeLabel = {
   DE: {
     today: 'Heute',
+    thisWeek: 'Diese Woche',
+    lastWeek: 'Letzte Woche',
     thisMonth: 'Dieser Monat',
     lastMonth: 'Letzter Monat',
-    lastSevenSays: 'Letzte 7 Tage',
-    lastThirtyDays: 'Letzte 30 Tage'
+    lastSevenDays: 'Letzte 7 Tage',
+    lastThirtyDays: 'Letzte 30 Tage',
+    lastNinetyDays: 'Letzte 90 Tage'
   },
   EN: {
     today: 'Today',
-    thisMonth: 'This Month',
-    lastMonth: 'Last Month',
-    lastSevenSays: 'Last 7 Days',
-    lastThirtyDays: 'Last 30 Days'
+    thisWeek: 'This week',
+    lastWeek: 'Last week',
+    thisMonth: 'This month',
+    lastMonth: 'Last month',
+    lastSevenDays: 'Last 7 days',
+    lastThirtyDays: 'Last 30 days',
+    lastNinetyDays: 'Last 90 days'
+  },
+  FR: {
+    today: 'Aujourd\'hui',
+    thisWeek: 'Cette semaine',
+    lastWeek: 'La semaine dernière',
+    thisMonth: 'Ce mois',
+    lastMonth: 'Le mois dernier',
+    lastSevenDays: '7 derniers jours',
+    lastThirtyDays: '30 derniers jours',
+    lastNinetyDays: '90 derniers jours'
   },
   ID: {
     today: 'Hari ini',
+    thisWeek: '',
+    lastWeek: '',
     thisMonth: 'Bulan ini',
     lastMonth: 'Bulan lalu',
     lastSevenDays: '7 Hari Terakhir',
-    lastThirtyDays: '30 Hari Terakhir'
+    lastThirtyDays: '30 Hari Terakhir',
+    lastNinetyDays: ''
   }
 }
 
@@ -55,6 +79,10 @@ const defaultCaptions = {
   EN: {
     title: 'Choose Dates',
     ok_button: 'Apply'
+  },
+  FR: {
+    title: 'Choisir les dates',
+    ok_button: 'Accepter'
   },
   ID: {
     title: 'Choose Dates',
@@ -75,55 +103,55 @@ const defaultStyle = {
 
 const defaultPresets = function (i18n = defaultI18n) {
   return {
-    today: function () {
+    thisWeek: function () {
+      // get current date
       const n = new Date()
-      const startToday = new Date(n.getFullYear(), n.getMonth(), n.getDate() + 1, 0, 0)
-      const endToday = new Date(n.getFullYear(), n.getMonth(), n.getDate() + 1, 23, 59)
+
+      // get current day of week eg.
+      // sun => 0
+      // mon => 1
+      // thu => 2
+      // wed => 3
+      // ...
+      const dayOfWeek = n.getDay()
+
+      // get current day of month => 18 if current date 18.07.2018
+      const dayOfMonth = n.getDate()
+
+      // if today is wednesday 18.07.2018, we need to go back 3 days to get
+      // sunday 15.07.2018.
+      // - dayOfMonth => 18
+      // - dayOfWeek => 3
+      // - diff => 15
+      //
+      // if current day is a sunday, dayOfWeek returns 0 and we need to go back 7 days
+      const diff = dayOfMonth - (dayOfWeek === 0 ? 7 : dayOfWeek)
+
+      // set new date with day of month set to diff
+      const startOfWeek = new Date(n.getFullYear(), n.getMonth(), diff + 1)
+      const endOfWeek = new Date(new Date(startOfWeek).setDate(startOfWeek.getDate() + 6))
+
       return {
-        label: presetRangeLabel[i18n].today,
+        label: presetRangeLabel[i18n].thisWeek,
         active: false,
         dateRange: {
-          start: startToday,
-          end: endToday
+          start: startOfWeek,
+          end: endOfWeek
         }
       }
     },
-    thisMonth: function () {
+    lastWeek: function () {
       const n = new Date()
-      const startMonth = new Date(n.getFullYear(), n.getMonth(), 2)
-      const endMonth = new Date(n.getFullYear(), n.getMonth() + 1, 1)
+      const day = n.getDay()
+      const diff = n.getDate() - (day === 0 ? 7 : day) - 7
+      const startOfWeek = new Date(n.getFullYear(), n.getMonth(), diff + 1)
+      const endOfWeek = new Date(new Date(startOfWeek).setDate(startOfWeek.getDate() + 6))
       return {
-        label: presetRangeLabel[i18n].thisMonth,
+        label: presetRangeLabel[i18n].lastWeek,
         active: false,
         dateRange: {
-          start: startMonth,
-          end: endMonth
-        }
-      }
-    },
-    lastMonth: function () {
-      const n = new Date()
-      const startMonth = new Date(n.getFullYear(), n.getMonth() - 1, 2)
-      const endMonth = new Date(n.getFullYear(), n.getMonth(), 1)
-      return {
-        label: presetRangeLabel[i18n].lastMonth,
-        active: false,
-        dateRange: {
-          start: startMonth,
-          end: endMonth
-        }
-      }
-    },
-    last7days: function () {
-      const n = new Date()
-      const start = new Date(n.getFullYear(), n.getMonth(), n.getDate() - 5)
-      const end = new Date(n.getFullYear(), n.getMonth(), n.getDate() + 1)
-      return {
-        label: presetRangeLabel[i18n].lastSevenDays,
-        active: false,
-        dateRange: {
-          start: start,
-          end: end
+          start: startOfWeek,
+          end: endOfWeek
         }
       }
     },
@@ -133,6 +161,19 @@ const defaultPresets = function (i18n = defaultI18n) {
       const end = new Date(n.getFullYear(), n.getMonth(), n.getDate() + 1)
       return {
         label: presetRangeLabel[i18n].lastThirtyDays,
+        active: false,
+        dateRange: {
+          start: start,
+          end: end
+        }
+      }
+    },
+    last90days: function () {
+      const n = new Date()
+      const start = new Date(n.getFullYear(), n.getMonth(), n.getDate() - 89)
+      const end = new Date(n.getFullYear(), n.getMonth(), n.getDate() + 1)
+      return {
+        label: presetRangeLabel[i18n].lastNinetyDays,
         active: false,
         dateRange: {
           start: start,
@@ -291,6 +332,9 @@ export default {
         return null
       }
       const dateparse = new Date(Date.parse(date))
+
+
+      // why -1 ?
       return fecha.format(new Date(dateparse.getFullYear(), dateparse.getMonth(), dateparse.getDate() - 1), format)
     },
     getDayIndexInMonth: function (r, i, startMonthDay) {
@@ -342,6 +386,7 @@ export default {
     },
     isDateSelected (r, i, key, startMonthDay, endMonthDate) {
       const result = this.getDayIndexInMonth(r, i, startMonthDay) + 1
+
       if (result < 2 || result > endMonthDate + 1) return false
 
       let currDate = null
