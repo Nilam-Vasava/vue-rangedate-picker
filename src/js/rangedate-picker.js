@@ -3,6 +3,10 @@ import fecha from 'fecha'
 const defaultConfig = {}
 const defaultI18n = 'EN'
 const availableMonths = {
+  DA: [
+    'Januar', 'Februar', 'Marts', 'April', 'Mai', 'Juni', 'Juli', 'August',
+    'September', 'Oktober', 'November', 'December'
+  ],
   DE: [
     'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August',
     'September', 'Oktober', 'November', 'Dezember'
@@ -11,13 +15,21 @@ const availableMonths = {
     'January', 'February', 'March', 'April', 'May', 'June', 'July',
     'August', 'September', 'October', 'November', 'December'
   ],
+  ES: [
+    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto',
+    'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+  ],
+  FI: [
+    'Tammikuu', 'Helmikuu', 'Maaliskuu', 'Huhtikuu', 'Toukokuu', 'Kesäkuu', 'Heinäkuu',
+    'Elokuu', 'Syyskuu', 'Lokakuu', 'Marraskuu', 'Joulukuu'
+  ],
   FR: [
     'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet',
     'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
   ],
-  ES: [
-    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto',
-    'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+  ID: [
+    'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli',
+    'Agustus', 'September', 'Oktober', 'November', 'Desember'
   ],
   IT: [
     'Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto',
@@ -38,27 +50,35 @@ const availableMonths = {
   RU: [
     'январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август',
     'сентябрь', 'октябрь', 'ноябрь', 'декабрь'
-  ],
-  ID: [
-    'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli',
-    'Agustus', 'September', 'Oktober', 'November', 'Desember'
   ]
 }
 
 const availableShortDays = {
+  DA: ['Man', 'Tir', 'Ons', 'Tors', 'Fre', 'Lør', 'Søn'],
   DE: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
   EN: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-  FR: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'],
   ES: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+  FI: ['Ma', 'Ti', 'Ke', 'To', 'Per', 'Lau', 'Su'],
+  FR: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'],
+  ID: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'],
   IT: ['lun', 'mar', 'mer', 'gio', 'ven', 'sab', 'dom'],
   NL: ['maa', 'din', 'woe', 'don', 'vri', 'zat', 'zon'],
   PL: ['Pon', 'Wto', 'Śr', 'Czw', 'Pt', 'Sb', 'Nd'],
   PT: ['2a', '3a', '4a', '5a', '6a', 'sá', 'do'],
-  RU: ['ПО', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'],
-  ID: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min']
+  RU: ['ПО', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС']
 }
 
 const presetRangeLabel = {
+  DA: {
+    today: 'I dag',
+    thisWeek: 'Denne uge',
+    lastWeek: 'Sidste uge',
+    thisMonth: 'denne måned',
+    lastMonth: 'Sidste måned',
+    lastSevenDays: 'Sidste 7 dage',
+    lastThirtyDays: 'Sidste 30 dage',
+    lastNinetyDays: 'Sidste 90 dage'
+  },
   DE: {
     today: 'Heute',
     thisWeek: 'Diese Woche',
@@ -78,6 +98,16 @@ const presetRangeLabel = {
     lastSevenDays: 'Last 7 days',
     lastThirtyDays: 'Last 30 days',
     lastNinetyDays: 'Last 90 days'
+  },
+  FI: {
+    today: 'Tänään',
+    thisWeek: 'Tämä viikko',
+    lastWeek: 'Viime viikko',
+    thisMonth: 'Tässä kuussa',
+    lastMonth: 'Viime kuukausi',
+    lastSevenDays: 'Viimeiset 7 päivää',
+    lastThirtyDays: 'Viimeiset 30 päivää',
+    lastNinetyDays: 'Viimeiset 90 päivää'
   },
   FR: {
     today: 'Aujourd\'hui',
@@ -162,13 +192,25 @@ const presetRangeLabel = {
 }
 
 const defaultCaptions = {
+  DA: {
+    title: 'Vælg datoer',
+    ok_button: 'Ansøge'
+  },
   DE: {
     title: 'Datum auswählen',
     ok_button: 'Bestätigen'
   },
   EN: {
-    title: 'Choose Dates',
+    title: 'Select Dates',
     ok_button: 'Apply'
+  },
+  ES: {
+    title: 'seleccionar una fecha',
+    ok_button: 'confirmar'
+  },
+  FI: {
+    title: 'Valitse päivämäärät',
+    ok_button: 'Käytä'
   },
   FR: {
     title: 'Choisir les dates',
@@ -193,10 +235,6 @@ const defaultCaptions = {
   NL: {
     title: 'selecteer datum',
     ok_button: 'bevestigen'
-  },
-  ES: {
-    title: 'seleccionar una fecha',
-    ok_button: 'confirmar'
   },
   ID: {
     title: 'Choose Dates',
