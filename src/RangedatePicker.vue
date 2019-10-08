@@ -114,7 +114,7 @@
 .calendar {
   display: block;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  width: 700px;
+  width: 800px;
   font-size: 12px;
   height: 300px;
   box-shadow: -3px 4px 12px -1px #ccc;

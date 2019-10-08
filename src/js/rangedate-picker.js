@@ -15,6 +15,30 @@ const availableMonths = {
     'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet',
     'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
   ],
+  ES: [
+    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto',
+    'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+  ],
+  IT: [
+    'Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto',
+    'Settembre', 'Ottobre', 'Novembre', 'Dicembre'
+  ],
+  NL: [
+    'Januari', 'Februaro', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus',
+    'September', 'Oktober', 'November', 'December'
+  ],
+  PL: [
+    'Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień',
+    'Wrzesień', 'Październik', 'Listopad', 'Grudzień'
+  ],
+  PT: [
+    'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto',
+    'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+  ],
+  RU: [
+    'январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август',
+    'сентябрь', 'октябрь', 'ноябрь', 'декабрь'
+  ],
   ID: [
     'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli',
     'Agustus', 'September', 'Oktober', 'November', 'Desember'
@@ -25,6 +49,12 @@ const availableShortDays = {
   DE: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
   EN: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
   FR: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'],
+  ES: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+  IT: ['lun', 'mar', 'mer', 'gio', 'ven', 'sab', 'dom'],
+  NL: ['maa', 'din', 'woe', 'don', 'vri', 'zat', 'zon'],
+  PL: ['Pon', 'Wto', 'Śr', 'Czw', 'Pt', 'Sb', 'Nd'],
+  PT: ['2a', '3a', '4a', '5a', '6a', 'sá', 'do'],
+  RU: ['ПО', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'],
   ID: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min']
 }
 
@@ -59,6 +89,66 @@ const presetRangeLabel = {
     lastThirtyDays: '30 derniers jours',
     lastNinetyDays: '90 derniers jours'
   },
+  ES: {
+    today: 'hoy',
+    thisWeek: 'esta semana',
+    lastWeek: 'semana pasada',
+    thisMonth: 'mes en curso',
+    lastMonth: 'mes pasado',
+    lastSevenDays: 'últimos siete días',
+    lastThirtyDays: 'últimos 30 días',
+    lastNinetyDays: 'últimos 90 días'
+  },
+  NL: {
+    today: 'od dit moment',
+    thisWeek: 'deze week',
+    lastWeek: 'vorige week',
+    thisMonth: 'deze maand',
+    lastMonth: 'vorige maand',
+    lastSevenDays: 'laatste zeven dagen',
+    lastThirtyDays: 'laatste 30 dagen',
+    lastNinetyDays: 'laatste 90 dagen'
+  },
+  PT: {
+    today: 'hoje',
+    thisWeek: 'esta semana',
+    lastWeek: 'semana passada',
+    thisMonth: 'este mês',
+    lastMonth: 'mês passado',
+    lastSevenDays: 'últimos sete dias',
+    lastThirtyDays: 'últimos 30 dias',
+    lastNinetyDays: 'últimos 90 dias '
+  },
+  IT: {
+    today: 'oggigiorno',
+    thisWeek: 'questa settimana',
+    lastWeek: 'la settimana scorsa',
+    thisMonth: 'questo mese',
+    lastMonth: 'ultimo mese',
+    lastSevenDays: 'ultimi sette giorni',
+    lastThirtyDays: 'ultimi 30 giorni',
+    lastNinetyDays: 'ultimi 90 giorni'
+  },
+  PL: {
+    today: 'aktualnie',
+    thisWeek: 'w tym tygodniu',
+    lastWeek: 'w ostatnim tygodniu',
+    thisMonth: 'ten miesiąc',
+    lastMonth: 'ostatni miesiąc',
+    lastSevenDays: 'ostatnie siódemka dni',
+    lastThirtyDays: 'ostatnie 30 dni',
+    lastNinetyDays: 'ostatnie 90 dni'
+  },
+  RU: {
+    today: 'сегодня',
+    thisWeek: 'эта неделя',
+    lastWeek: 'прошлая неделя',
+    thisMonth: 'этот месяц',
+    lastMonth: 'последний месяц',
+    lastSevenDays: 'последние семь дней',
+    lastThirtyDays: 'последние 30 дней',
+    lastNinetyDays: 'последние 90 дней'
+  },
   ID: {
     today: 'Hari ini',
     thisWeek: '',
@@ -83,6 +173,30 @@ const defaultCaptions = {
   FR: {
     title: 'Choisir les dates',
     ok_button: 'Accepter'
+  },
+  RU: {
+    title: 'Выберите дату',
+    ok_button: 'подтверждать'
+  },
+  PL: {
+    title: 'Wybierz datę',
+    ok_button: 'potwierdzać'
+  },
+  IT: {
+    title: 'Selezionare la data',
+    ok_button: 'comprovare'
+  },
+  PT: {
+    title: 'Selecione a data',
+    ok_button: 'confirmar'
+  },
+  NL: {
+    title: 'selecteer datum',
+    ok_button: 'bevestigen'
+  },
+  ES: {
+    title: 'seleccionar una fecha',
+    ok_button: 'confirmar'
   },
   ID: {
     title: 'Choose Dates',
