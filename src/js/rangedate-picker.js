@@ -39,6 +39,10 @@ const availableMonths = {
     'Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto',
     'Settembre', 'Ottobre', 'Novembre', 'Dicembre'
   ],
+  LV: [
+    'Janvārī', 'Ferbruārī', 'Martā', 'Aprīlī', 'Maijā', 'Jūnijā', 'Jūlijā', 'Augustā',
+    'Septembrī', 'Oktobrī', 'Novembrī', 'Decembrī'
+  ],
   NL: [
     'Januari', 'Februaro', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus',
     'September', 'Oktober', 'November', 'December'
@@ -67,6 +71,7 @@ const availableShortDays = {
   FR: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'],
   ID: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'],
   IT: ['lun', 'mar', 'mer', 'gio', 'ven', 'sab', 'dom'],
+  LV: ['Sv.', 'P.', 'O.', 'T.', 'C.', 'Pk.', 'S.'],
   NL: ['maa', 'din', 'woe', 'don', 'vri', 'zat', 'zon'],
   PL: ['Pon', 'Wto', 'Śr', 'Czw', 'Pt', 'Sb', 'Nd'],
   PT: ['2a', '3a', '4a', '5a', '6a', 'sá', 'do'],
@@ -143,6 +148,16 @@ const presetRangeLabel = {
     lastSevenDays: '7 derniers jours',
     lastThirtyDays: '30 derniers jours',
     lastNinetyDays: '90 derniers jours'
+  },
+  LV: {
+    today: 'Šodien',
+    thisWeek: 'Šonedēļ',
+    lastWeek: 'Pagājušajā nedēļā',
+    thisMonth: 'Šis mēnesis',
+    lastMonth: 'Pagājušajā mēnesī',
+    lastSevenDays: 'Pēdējās 7 dienas',
+    lastThirtyDays: 'Pēdējās 30 dienas',
+    lastNinetyDays: 'Pēdējās 90 dienas'
   },
   NL: {
     today: 'od dit moment',
@@ -235,29 +250,33 @@ const defaultCaptions = {
     title: 'Choisir les dates',
     ok_button: 'Accepter'
   },
-  RU: {
-    title: 'Выберите дату',
-    ok_button: 'подтверждать'
-  },
-  PL: {
-    title: 'Wybierz datę',
-    ok_button: 'potwierdzać'
+  ID: {
+    title: 'Choose Dates',
+    ok_button: 'Apply'
   },
   IT: {
     title: 'Selezionare la data',
     ok_button: 'comprovare'
   },
-  PT: {
-    title: 'Selecione a data',
-    ok_button: 'confirmar'
+  LV: {
+    title: 'Atlasiet datumus',
+    ok_button: 'Piesakies'
   },
   NL: {
     title: 'selecteer datum',
     ok_button: 'bevestigen'
   },
-  ID: {
-    title: 'Choose Dates',
-    ok_button: 'Apply'
+  PL: {
+    title: 'Wybierz datę',
+    ok_button: 'potwierdzać'
+  },
+  PT: {
+    title: 'Selecione a data',
+    ok_button: 'confirmar'
+  },
+  RU: {
+    title: 'Выберите дату',
+    ok_button: 'подтверждать'
   }
 }
 
