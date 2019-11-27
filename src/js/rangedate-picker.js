@@ -19,6 +19,10 @@ const availableMonths = {
     'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto',
     'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
   ],
+  ET: [
+    'Jaanuaril', 'Veebruar', 'Märts', 'Aprill', 'Mai', 'Juuni', 'Juuli',
+    'August', 'September', 'Oktoober', 'November', 'Detsember'
+  ],
   FI: [
     'Tammikuu', 'Helmikuu', 'Maaliskuu', 'Huhtikuu', 'Toukokuu', 'Kesäkuu', 'Heinäkuu',
     'Elokuu', 'Syyskuu', 'Lokakuu', 'Marraskuu', 'Joulukuu'
@@ -58,6 +62,7 @@ const availableShortDays = {
   DE: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
   EN: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
   ES: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+  ET: ['Esm', 'Tei', 'Kol', 'Nel', 'Ree', 'Lau', 'Püh'],
   FI: ['Ma', 'Ti', 'Ke', 'To', 'Per', 'Lau', 'Su'],
   FR: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'],
   ID: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'],
@@ -99,6 +104,26 @@ const presetRangeLabel = {
     lastThirtyDays: 'Last 30 days',
     lastNinetyDays: 'Last 90 days'
   },
+  ES: {
+    today: 'hoy',
+    thisWeek: 'esta semana',
+    lastWeek: 'semana pasada',
+    thisMonth: 'mes en curso',
+    lastMonth: 'mes pasado',
+    lastSevenDays: 'últimos siete días',
+    lastThirtyDays: 'últimos 30 días',
+    lastNinetyDays: 'últimos 90 días'
+  },
+  ET: {
+    today: 'Täna',
+    thisWeek: 'See nädal',
+    lastWeek: 'Eelmine nädal',
+    thisMonth: 'See kuu',
+    lastMonth: 'Eelmine kuu',
+    lastSevenDays: 'Viimased 7 päeva',
+    lastThirtyDays: 'Viimased 30 päeva',
+    lastNinetyDays: 'Viimased 90 päeva'
+  },
   FI: {
     today: 'Tänään',
     thisWeek: 'Tämä viikko',
@@ -118,16 +143,6 @@ const presetRangeLabel = {
     lastSevenDays: '7 derniers jours',
     lastThirtyDays: '30 derniers jours',
     lastNinetyDays: '90 derniers jours'
-  },
-  ES: {
-    today: 'hoy',
-    thisWeek: 'esta semana',
-    lastWeek: 'semana pasada',
-    thisMonth: 'mes en curso',
-    lastMonth: 'mes pasado',
-    lastSevenDays: 'últimos siete días',
-    lastThirtyDays: 'últimos 30 días',
-    lastNinetyDays: 'últimos 90 días'
   },
   NL: {
     today: 'od dit moment',
@@ -207,6 +222,10 @@ const defaultCaptions = {
   ES: {
     title: 'seleccionar una fecha',
     ok_button: 'confirmar'
+  },
+  ET: {
+    title: 'Valige Kuupäevad',
+    ok_button: 'Kandideeri'
   },
   FI: {
     title: 'Valitse päivämäärät',
