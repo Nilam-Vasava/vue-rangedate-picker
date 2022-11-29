@@ -518,15 +518,27 @@ export default {
       this.showMonth = !this.showMonth
       return
     },
+    getShortMonthNames: function(arr, sLen) {
+      const newArr = [];
+      for (const i = 0, len = arr.length; i < len; i++) {
+       newArr.push(arr[i].substr(0, sLen));
+      }
+      return newArr;
+    },
     getDateString: function (date, format = this.format) {
       if (!date) {
         return null
       }
       const dateparse = new Date(Date.parse(date))
 
+      const monthNamesShort = this.getShortMonthNames(availableMonths[this.i18n], 3)
+      const i18n = {                    
+        monthNamesShort: monthNamesShort
+      }
+
 
       // why -1 ?
-      return fecha.format(new Date(dateparse.getFullYear(), dateparse.getMonth(), dateparse.getDate() - 1), format)
+      return fecha.format(new Date(dateparse.getFullYear(), dateparse.getMonth(), dateparse.getDate() - 1), format, i18n)
     },
     getDayIndexInMonth: function (r, i, startMonthDay) {
       const date = (this.numOfDays * (r - 1)) + i
