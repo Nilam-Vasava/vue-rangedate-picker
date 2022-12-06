@@ -58,6 +58,18 @@ const availableMonths = {
   RU: [
     'январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август',
     'сентябрь', 'октябрь', 'ноябрь', 'декабрь'
+  ],
+  TR: [
+    'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz',
+    'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
+  ],
+  SV: [
+    'Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli',
+    'Augusti', 'September', 'Oktober', 'November', 'December'
+  ],
+  RO: [
+    'Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie', 'Iulie',
+    'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie'
   ]
 }
 
@@ -75,7 +87,10 @@ const availableShortDays = {
   NL: ['maa', 'din', 'woe', 'don', 'vri', 'zat', 'zon'],
   PL: ['Pon', 'Wto', 'Śr', 'Czw', 'Pt', 'Sb', 'Nd'],
   PT: ['2a', '3a', '4a', '5a', '6a', 'sá', 'do'],
-  RU: ['ПО', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС']
+  RU: ['ПО', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'],
+  TR: ['Pzt', 'Sa', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'],
+  SV: ['mån', 'tis', 'ons', 'tors', 'fre', 'lör', 'sön'],
+  RO: ['Luni', 'Marți', 'Miercuri', 'Joi', 'Vineri', 'Sâmbătă', 'Doarece']
 }
 
 const presetRangeLabel = {
@@ -218,6 +233,36 @@ const presetRangeLabel = {
     lastSevenDays: '7 Hari Terakhir',
     lastThirtyDays: '30 Hari Terakhir',
     lastNinetyDays: ''
+  },
+  TR: {
+    today: 'Bugün',
+    thisWeek: 'Bu hafta',
+    lastWeek: 'Geçen hafta',
+    thisMonth: 'Bu ay',
+    lastMonth: 'Geçen ay',
+    lastSevenDays: 'Son 7 gün',
+    lastThirtyDays: 'Son 30 gün',
+    lastNinetyDays: 'Son 90 gün'
+  },
+  SV: {
+    today: 'Idag',
+    thisWeek: 'Denna vecka',
+    lastWeek: 'Förra veckan',
+    thisMonth: 'Denna månad',
+    lastMonth: 'Förra månaden',
+    lastSevenDays: 'Senaste 7 dagarna',
+    lastThirtyDays: 'Senaste 30 dagarna',
+    lastNinetyDays: 'Senaste 90 dagarna'
+  },
+  RO: {
+    today: 'Astăzi',
+    thisWeek: 'Săptămâna aceasta',
+    lastWeek: 'Săptămâna trecută',
+    thisMonth: 'Luna aceasta',
+    lastMonth: 'Luna trecută',
+    lastSevenDays: 'Ultimele 7 zile',
+    lastThirtyDays: 'Ultimele 30 de zile',
+    lastNinetyDays: 'Ultimele 90 de zile'
   }
 }
 
@@ -277,6 +322,18 @@ const defaultCaptions = {
   RU: {
     title: 'Выберите дату',
     ok_button: 'подтверждать'
+  },
+  TR: {
+    title: 'Tarihleri ​​Seçin',
+    ok_button: 'Uygula'
+  },
+  SV: {
+    title: 'Välj datum',
+    ok_button: 'Ansök'
+  },
+  RO: {
+    titlu: 'Selectați datele',
+    ok_button: 'Aplicați'
   }
 }
 
@@ -518,12 +575,12 @@ export default {
       this.showMonth = !this.showMonth
       return
     },
-    getShortMonthNames: function(arr, sLen) {
-      const newArr = [];
-      for (const i = 0, len = arr.length; i < len; i++) {
-       newArr.push(arr[i].substr(0, sLen));
+    getShortMonthNames: function (arr, sLen) {
+      const newArr = []
+      for (var i = 0, len = arr.length; i < len; i++) {
+        newArr.push(arr[i].substr(0, sLen))
       }
-      return newArr;
+      return newArr
     },
     getDateString: function (date, format = this.format) {
       if (!date) {
@@ -532,7 +589,7 @@ export default {
       const dateparse = new Date(Date.parse(date))
 
       const monthNamesShort = this.getShortMonthNames(availableMonths[this.i18n], 3)
-      const i18n = {                    
+      const i18n = {
         monthNamesShort: monthNamesShort
       }
 
